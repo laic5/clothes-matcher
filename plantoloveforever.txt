@@ -1,0 +1,13 @@
+0. We scrape Google shopping for top results in "blue dress" and "green jacket".
+- need image, product link, and title
+- assign ID to each loveydove
+
+1. User types in very broad item of what they want, e.g. "blue dress"
+2. Matt does front end app for us.
+- display top 20 images based on NLP (word intersection) and FC features
+
+3. User selects at least 1 and up to 20 images.
+
+4. Run similarity measure (NLP + cosine similarity for FC features)
+
+5. Show top 20 results to user.
