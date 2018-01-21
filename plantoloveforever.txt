@@ -11,3 +11,10 @@
 4. Run similarity measure (NLP + cosine similarity for FC features)
 
 5. Show top 20 results to user.
+
+-------
+If we have time,
+
+Run neural net to train category (dress vs. top vs. jeans) so we can pass in a new image and it will tell us which category it is.
+- clean the file string to get only the category (last underscore of the filename)
+- pass image and change the last layer of resnet
