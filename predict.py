@@ -52,9 +52,9 @@ def get_cnn_output(model, ims):
 # In[ ]:
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--model', dest='model', type=str)
-parser.add_argument('--fname', dest='fname', type=str)
-parser.add_argument('--dir', dest='dir', type=str)
+parser.add_argument('--model', dest='model', default='resnet.h5', type=str)
+parser.add_argument('--fname', dest='fname', default='pred.p', type=str)
+parser.add_argument('--dir', dest='dir', default='images/', type=str)
 
 args = parser.parse_args()
 
