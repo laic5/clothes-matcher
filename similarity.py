@@ -6,6 +6,7 @@
 import os
 import numpy as np
 import pandas as pd
+import pickle
 
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -30,10 +31,13 @@ def get_top_k_indices(google_cnn_output, user_selected_ids, k):
         
     similarity_results = np.zeros((len(user_selected_imgs), len(google_cnn_output)))
 
-    for idx, img in enumerate(user_selected_imgs):
-        similarity_results[idx,:] = cosine_similarity(img.reshape(1, -1), google_cnn_output)
-        
-    print(similarity_results)
+    #for idx, img in enumerate(user_selected_imgs):
+    #    print(img.shape)
+    #    similarity_results[idx,:] = cosine_similarity(img.reshape(1, -1), google_cnn_output)
+
+    for i in range(len(user_selected_ids)):
+        similarity_results[i,:] = cosine_similarity(user_selected_imgs.iloc[i,:].reshape(1,-1), google_cnn_output)
+
         
     if similarity_results.shape[0] == 1:
         sorted_indices = np.argsort(similarity_results[0])
@@ -49,8 +53,13 @@ def get_top_k_indices(google_cnn_output, user_selected_ids, k):
 
     return(list(reversed(top_indices)))
 
+PICKLED_FILE = 'google1937.p'
 
-# In[ ]:
+with open(PICKLED_FILE, 'rb') as pickle_file:
+    content = pickle.load(pickle_file)
+
+google_cnn_output = pd.DataFrame(content)
+user_selected_ids = [3,33]
 
 output = get_top_k_indices(google_cnn_output, user_selected_ids, 5)
 print(output)

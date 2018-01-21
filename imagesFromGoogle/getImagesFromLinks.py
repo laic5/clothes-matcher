@@ -11,6 +11,3 @@ with open('image_links', 'r') as inF:
         line = line[1:-1]
         urllib.request.urlretrieve(line, 'images/image' + str(count) + '.jpg')
         count += 1
-
-
-
