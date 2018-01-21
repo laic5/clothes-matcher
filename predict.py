@@ -58,6 +58,8 @@ def read_images_from_dir(directory):
             ims = [Image.open(os.path.join(directory, file)).resize((224,224)) for file in directory_contents_list]
         
         ims = np.array([np.array(im, dtype=np.float64) for im in ims])
+        print(ims.shape)
+        print(ims[0].shape)
     
     except:
         print("Issue loading the images!")
@@ -82,7 +84,7 @@ def get_cnn_output(model, ims):
     #if len(ims.shape) == 1:
     #    ims = ims.reshape(1, -1)
     
-    return (model.predict(ims))
+    return (tqdm(model.predict(ims)))
 
 
 # In[ ]:
@@ -93,6 +95,7 @@ parser.add_argument('--fname', dest='fname', default='pred.p', type=str)
 parser.add_argument('--dir', dest='dir', default='images/', type=str)
 
 args = parser.parse_args()
+print(args.model, args.fname, args.dir)
 
 
 # In[6]:
@@ -115,6 +118,6 @@ preds = get_cnn_output(model2, image_list)
 #cPickle.dump(preds, open(args.fname, "wb"))
 
 f = open(args.fname, 'wb')   # 'wb' instead 'w' for binary file
-pickle.dump(preds)       # -1 specifies highest binary protocol
+pickle.dump(preds, f)       # -1 specifies highest binary protocol
 f.close() 
 
