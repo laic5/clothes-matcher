@@ -29,6 +29,42 @@ import pickle
 import argparse
 
 
+# In[10]:
+
+# load images from image directory
+
+def read_images_from_dir(directory):
+    '''
+    Reads in all images in a directory.
+    Can deal with 1 nested directory
+    Converts file --> PIL image --> np array
+    '''
+    directory_contents_list  = os.listdir(directory)
+
+    ims = []
+    try:
+        if os.path.isdir(os.path.join(directory, directory_contents_list[0])): # there's another directory
+            print("HIHIHI")
+            # go down another layer
+            for direc in directory_contents_list:
+                # list all the images in the directory
+                images_list = os.listdir(os.path.join(directory, direc))
+
+                # open the images and resize
+                ims.extend([Image.open(os.path.join(directory, direc, im)).resize((224,224)) for im in images_list])
+
+        else: # directly open up the images
+            print("LOVE")
+            ims = [Image.open(os.path.join(directory, file)).resize((224,224)) for file in directory_contents_list]
+        
+        ims = np.array([np.array(im, dtype=np.float64) for im in ims])
+    
+    except:
+        print("Issue loading the images!")
+        
+    return ims
+
+
 # In[4]:
 
 def remove_softmax(model):
@@ -43,8 +79,8 @@ def remove_softmax(model):
 
 def get_cnn_output(model, ims):
     # ims is np array
-    if len(ims.shape) == 1:
-        ims = ims.reshape(1, -1)
+    #if len(ims.shape) == 1:
+    #    ims = ims.reshape(1, -1)
     
     return (model.predict(ims))
 
@@ -65,37 +101,6 @@ args = parser.parse_args()
 model2 = load_model(args.model)
 
 model2 = remove_softmax(model2)
-
-
-# In[10]:
-
-# load images from image directory
-
-def read_images_from_dir(directory):
-    '''
-    Reads in all images in a directory.
-    Can deal with 1 nested directory
-    Converts file --> PIL image --> np array
-    '''
-    directory_contents_list  = os.listdir(directory)
-
-    ims = []
-    try:
-        if os.path.isdir(os.path.join(directory, directory_contents_list[0])): # there's another directory
-            # go down another layer
-            for direc in directory_contents_list:
-                # list all the images in the directory
-                images_list = os.listdir(os.path.join(directory, direc))
-
-                # open the images and resize
-                ims.extend([np.array(Image.open(os.path.join(directory, direc, im)), dtype=np.float64).resize((224,224)) for im in images_list])
-
-        else: # directly open up the images
-            ims = [np.array(Image.open(os.path.join(directory, file)), dtype=np.float64).resize((224,224)) for file in directory_contents_list]
-    except:
-        print("Issue loading the images!")
-        
-    return ims
 
 
 # In[ ]:
