@@ -1,0 +1,21 @@
+Done:
+Trained and saved model to get image features (2048).
+sql query from google images
+web scraped database
+
+Need to do:
+PCA on features?
+front end
+
+
+User:
+1. search term
+2. display 20 items with that term using sql
+3. user selects up to 20 images
+4. take those image IDs and compute similarity based on all the images in the database
+5. return the IDs of the top 20 most similar images
+6. display images from those IDs, repeat steps 3-5 until user is satisfied.
+
+*note: initial search is only on terms (using SQL only)
+*note: searches thus after do NOT rely on language/sql, only on image similarity
+*note: to take language into consideration, could narrow down "red" OR "blouse", don't need both so it's broader. and then take those and perform similarities on only those, instead of all the images
