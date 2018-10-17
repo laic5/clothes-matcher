@@ -13,3 +13,5 @@ HackDavis 2018 to improve on Google Shopping by matching one step further.
 * Use NLP on product titles as another layer to assess similarity between products
 * Train different models (convolutional autoencoder?), different loss functions, and different arcitectures for best results.
 * Get more data.
+
+Coded by Varun Ved & me. Team of 2 *(+ 1 person last minute to help with front-end)*
