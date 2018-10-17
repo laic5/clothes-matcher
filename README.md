@@ -14,4 +14,12 @@ HackDavis 2018 to improve on Google Shopping by matching one step further.
 * Train different models (convolutional autoencoder?), different loss functions, and different arcitectures for best results.
 * Get more data.
 
-Coded by Varun Ved & me. Team of 2 *(+ 1 person last minute to help with front-end)*
+## Tools Used:
+* Tensorflow + Keras
+* Google Cloud
+* Python, Flask
+* SQLite
+* Javascript + JQuery
+
+
+Coded by Varun Ved & me. *(+1 person last minute to help with front-end)*
