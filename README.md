@@ -14,6 +14,11 @@ HackDavis 2018 to improve on Google Shopping by matching one step further.
 * Train different models (convolutional autoencoder?), different loss functions, and different arcitectures for best results.
 * Get more data.
 
+## Files:
+* App/app.py : Flask app with MySQL queries, receives similarity scores and displays top-k results
+* img_to_category.ipynb : image file handling, training ResNet, return predictions, similarity ranking
+* GoogleCrawler.py : web scraper to get different combinations of products from Google Shopping
+
 ## Tools Used:
 * Tensorflow + Keras
 * Google Cloud

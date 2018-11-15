@@ -105,8 +105,6 @@ def run(search_term):
     return clothes
 
 
-print("I love you so much babe, thank you for working on this project with me")
-print("I know that no matter what, we'll have a lovey result")
 
 out_df = (generate_clothes_colors_combination())
 out_df.to_csv('out-2.csv')
